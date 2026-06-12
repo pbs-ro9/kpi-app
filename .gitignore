@@ -1,0 +1,8 @@
+.streamlit/secrets.toml
+.env
+.Precalculation.ipynb
+.branches.csv
+.import_targets.ipynb
+.kpi_data_clean.xlsx
+.kpi_variable.csv
+.tes.ipynb
