@@ -691,36 +691,6 @@ else:
 
 tbody_html = ""
 for cat_name, variables in category_groups.items():
-    def get_sort_order(var):
-        var_name = var.get("var_name", "").lower().strip()
-        order = {
-            # Profitabilitas
-            "contribution margin": 1,
-            "cost income ratio": 2,
-            "fee based income": 3,
-            "ace": 4,
-            # Volume Bisnis & Kualitas Asset
-            "tabungan": 1,
-            "giro": 2,
-            "deposito usak": 3,
-            "tabungan e-mas": 4,
-            "consumer": 5,
-            "sme & mikro": 6,
-            "gpb": 7,
-            "npf": 8,
-            "kol 2": 9,
-            # Cust Based
-            "non individu": 1,
-            "individu": 2,
-            # Operasional & People Development
-            "production sales": 1,
-            "index operasional": 2,
-            "hc index": 3
-        }
-        return order.get(var_name, 999)
-
-    variables.sort(key=get_sort_order)
-
     tbody_html += f'<tr class="category-header"><td colspan="7"># &nbsp; {cat_name.title()}</td></tr>\n'
     for idx, var in enumerate(variables, 1):
         # Ambil nilai dari variable_scores jika ada
