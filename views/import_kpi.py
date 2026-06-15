@@ -403,12 +403,12 @@ def show_import():
     # ==============================================================================
     SAMPLE_REALIZATION = [
         {
-            "kdo_bsi": "ID0010023",
+            "KDO_BSI": "ID0010023",
             "var_code": "CM",
             "value": 1500000000,            
         },
         {
-            "kdo_bsi": "ID0010041",
+            "KDO_BSI": "ID0010041",
             "var_code": "DPK",
             "value": 5000000000,            
         }
@@ -416,7 +416,7 @@ def show_import():
     
     SAMPLE_TARGET = [
     {
-        "kdo_bsi": "ID0010023",
+        "KDO_BSI": "ID0010023",
         "var_code": "CM",
         "jan": 1000000000,
         "feb": 1200000000,
