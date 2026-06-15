@@ -87,7 +87,7 @@ if st.session_state.page == "import":
         with col_input:
             pwd = st.text_input("Password", type="password", key="import_pwd_input", label_visibility="collapsed")
             if st.button("🔓 Masuk", use_container_width=True, type="primary"):
-                if pwd == st.secrets["app"]["import_password"]:
+                if pwd == st.secrets["app"]["import_pass"]:
                     st.session_state.import_authenticated = True
                     st.rerun()
                 else:
