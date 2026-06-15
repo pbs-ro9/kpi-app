@@ -87,7 +87,7 @@ if st.session_state.page == "import":
         with col_input:
             pwd = st.text_input("Password", type="password", key="import_pwd_input", label_visibility="collapsed")
             if st.button("🔓 Masuk", use_container_width=True, type="primary"):
-                if pwd == st.secrets["app"]["import_pass"]:
+                if pwd == st.secrets["app"]["import_password"]:
                     st.session_state.import_authenticated = True
                     st.rerun()
                 else:
@@ -243,6 +243,40 @@ st.markdown("""
     .cabang-dd-item:hover { background: var(--dd-hover); color: #1677ff; }
     .cabang-dd-item-active { background: var(--dd-active); color: #1677ff; font-weight: 600; }
     .cabang-dd-check { color: #1677ff; font-size: 13px; }
+
+    /* Style dropdown branch buttons as list-row items */
+    .cabang-dropdown [data-testid="stButton"] { margin: 0 !important; }
+    .cabang-dropdown [data-testid="stButton"] > button {
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        border-radius: 8px !important;
+        padding: 9px 12px !important;
+        font-size: 13px !important;
+        font-weight: 400 !important;
+        color: var(--text-secondary) !important;
+        text-align: left !important;
+        justify-content: flex-start !important;
+        transition: background 0.15s, color 0.15s !important;
+        margin: 0 !important;
+        line-height: 1.4 !important;
+    }
+    .cabang-dropdown [data-testid="stButton"] > button:hover {
+        background: var(--dd-hover) !important;
+        color: #1677ff !important;
+        border: none !important;
+    }
+    /* Active branch button (type=primary) */
+    .cabang-dropdown [data-testid="stButton"] > button[kind="primary"] {
+        background: var(--dd-active) !important;
+        color: #1677ff !important;
+        font-weight: 600 !important;
+        border: none !important;
+        box-shadow: none !important;
+    }
+    .cabang-dropdown [data-testid="stButton"] > button[kind="primary"]:hover {
+        background: var(--dd-hover) !important;
+    }
 
     .kpi-card {
         background: var(--bg-card); border: 1px solid var(--border-card);
@@ -479,16 +513,14 @@ if st.session_state.show_cabang_dd:
             st.markdown(f'<div class="cabang-dd-area">📍 {area_name}</div>', unsafe_allow_html=True)
             for b in area_branches:
                 is_active = b["branch_id"] == st.session_state.selected_branch_id
-                css_class = "cabang-dd-item cabang-dd-item-active" if is_active else "cabang-dd-item"
-                check = "✓" if is_active else ""
-                st.markdown(
-                    f'<div class="{css_class}" style="margin-bottom:2px;">'
-                    f'<span>{b["branch_name"]}</span>'
-                    f'<span class="cabang-dd-check">{check}</span>'
-                    f'</div>',
-                    unsafe_allow_html=True,
-                )
-                if st.button(b["branch_name"], key=f"dd_{b['branch_id']}", use_container_width=True):
+                check = " ✓" if is_active else ""
+                btn_type = "primary" if is_active else "secondary"
+                if st.button(
+                    f"{b['branch_name']}{check}",
+                    key=f"dd_{b['branch_id']}",
+                    use_container_width=True,
+                    type=btn_type,
+                ):
                     st.session_state.selected_branch_id   = b["branch_id"]
                     st.session_state.selected_branch_name = b["branch_name"]
                     st.session_state.show_cabang_dd = False
