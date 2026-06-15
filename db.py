@@ -99,13 +99,12 @@ def fetch_cabang():
 
 def fetch_available_periods():
     """
-    Periode yang sudah memiliki kpi_score_records.
+    Periode yang sudah memiliki data realisasi (dari import).
     Return: ['2026-03-01', ...] sebagai string, urut terbaru.
     """
     sql = """
         SELECT DISTINCT periode
-        FROM   kpi_score_records
-        WHERE  entity_type = 'branch'
+        FROM   kpi_realizations
         ORDER  BY periode DESC
     """
     rows = query(sql)
