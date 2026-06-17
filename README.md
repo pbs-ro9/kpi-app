@@ -46,7 +46,7 @@ KPI-APP/
 ### 1. Clone Repository
 
 ```bash
-git clone https://github.com/MuhRijalulAwal/kpi-app.git
+git clone https://github.com/pbs-ro9/kpi-app.git
 cd kpi-app
 ```
 
